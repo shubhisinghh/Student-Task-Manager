@@ -20,7 +20,7 @@ student-task-manager/
 └── README.md            # Project documentation
 ```
 
-## Setup Instructions![Uploading Screenshot 2025-08-12 154544.png…]()
+## Setup Instructions
 
 1. Clone the repository.
 2. Set up a local PHP server or use XAMPP/LAMP.
