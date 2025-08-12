@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySphere | Student Productivity Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <!-- Tech Background Elements -->
+    <div class="tech-bg" id="techBg"></div>
+    
+    <!-- Floating Books -->
+    <div class="floating-books">
+        <div class="book"><i class="fas fa-atom"></i></div>
+        <div class="book"><i class="fas fa-laptop-code"></i></div>
+        <div class="book"><i class="fas fa-book-open"></i></div>
+        <div class="book"><i class="fas fa-flask"></i></div>
+    </div>
+    
+    <!-- Main Auth Container -->
+    <div class="auth-container">
+        <!-- Illustration Side -->
+        <div class="illustration-side">
+            <div class="illustration-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="logo-text">StudySphere</div>
+                </div>
+                
+                <h1 class="illustration-title">Boost Your Academic Productivity</h1>
+                <p class="illustration-subtitle">
+                    Join thousands of students who are organizing their studies, tracking progress, 
+                    and achieving their academic goals with our powerful task management platform.
+                </p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="feature-title">Smart Scheduling</h3>
+                        <p class="feature-desc">Plan your study sessions around your classes and commitments</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="feature-title">Progress Analytics</h3>
+                        <p class="feature-desc">Visualize your study patterns and improvement over time</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3 class="feature-title">Reminder System</h3>
+                        <p class="feature-desc">Never miss a deadline or important study session again</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">Study Groups</h3>
+                        <p class="feature-desc">Collaborate with classmates on group projects and assignments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form Side -->
+        <div class="form-side">
+            <!-- Register Form Container -->
+            <div class="form-container register-container" id="registerContainer">
+                <div class="form-header">
+                    <h2 class="form-title">Create Account</h2>
+                    <p class="form-subtitle">Start organizing your academic life today</p>
+                </div>
+                
+                <?php if ($error && !isset($_POST['login'])) : ?>
+                    <div class="error-message">
+                        <?= htmlspecialchars($error) ?>
+                    </div>
+                <?php endif; ?>
+                
+                <form method="POST" id="registerForm">
+                    <div class="form-group">
+                        <label for="regEmail" class="form-label">University Email</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="regEmail" name="email" class="form-input" required 
+                                   placeholder="you@university.edu" value="<?= isset($email) ? htmlspecialchars($email) : '' ?>">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regPassword" class="form-label">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="regPassword" name="password" class="form-input" required 
+                                   placeholder="Create a strong password">
+                            <i class="fas fa-eye password-toggle" id="toggleRegPassword"></i>
+                        </div>
+                        
+                        <div class="password-strength">
+                            <div class="strength-meter">
+                                <div class="strength-bar" id="strengthBar"></div>
+                            </div>
+                            <div class="strength-text" id="strengthText">Password strength</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" name="register" class="btn btn-primary">Get Started</button>
+                </form>
+                
+                <div class="auth-switch">
+                    Already have an account? <span class="auth-link" id="showLogin">Sign In</span>
+                </div>
+            </div>
+            
+            <!-- Login Form Container -->
+            <div class="form-container login-container" id="loginContainer">
+                <div class="form-header">
+                    <h2 class="form-title">Welcome Back</h2>
+                    <p class="form-subtitle">Sign in to continue your productivity journey</p>
+                </div>
+                
+                <?php if ($error && isset($_POST['login'])) : ?>
+                    <div class="error-message">
+                        <?= htmlspecialchars($error) ?>
+                    </div>
+                <?php endif; ?>
+                
+                <form method="POST" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail" class="form-label">Email Address</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="loginEmail" name="email" class="form-input" required 
+                                   placeholder="you@university.edu" value="<?= isset($email) ? htmlspecialchars($email) : '' ?>">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="loginPassword" name="password" class="form-input" required 
+                                   placeholder="Enter your password">
+                            <i class="fas fa-eye password-toggle" id="toggleLoginPassword"></i>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" name="login" class="btn btn-primary">Sign In</button>
+                </form>
+                
+                <div class="auth-switch">
+                    Don't have an account? <span class="auth-link" id="showRegister">Sign Up</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
